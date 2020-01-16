@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 project(DBoW2)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")

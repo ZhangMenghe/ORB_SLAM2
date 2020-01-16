@@ -1,4 +1,9 @@
+.vscode/
 CMakeLists.txt.user
+Examples/Monocular/*.zip
+Examples/Monocular/*/*
+Thirdparty/
+build-android/
 Examples/Monocular/mono_euroc
 Examples/Monocular/mono_kitti
 Examples/Monocular/mono_tum
