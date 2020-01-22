@@ -35,7 +35,7 @@
 #include"KeyFrameDatabase.h"
 #include"ORBextractor.h"
 #include "Initializer.h"
-#include "MapDrawer.h"
+// #include "MapDrawer.h"
 #include "System.h"
 
 #include <mutex>
@@ -49,6 +49,7 @@ class Map;
 class LocalMapping;
 class LoopClosing;
 class System;
+class MapDrawer;
 
 class Tracking
 {  

@@ -79,8 +79,9 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     //Create Drawers. These are used by the Viewer
     mpFrameDrawer = new FrameDrawer(mpMap);
+#ifdef MAP_DRAWER_ENABLE
     mpMapDrawer = new MapDrawer(mpMap, strSettingsFile);
-
+#endif
     //Initialize the Tracking thread
     //(it will live in the main thread of execution, the one that called this constructor)
     mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
@@ -222,7 +223,6 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
         cerr << "ERROR: you called TrackMonocular but input sensor was not set to Monocular." << endl;
         exit(-1);
     }
-
     // Check mode change
     {
         unique_lock<mutex> lock(mMutexMode);
@@ -246,7 +246,6 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
             mbDeactivateLocalizationMode = false;
         }
     }
-
     // Check reset
     {
     unique_lock<mutex> lock(mMutexReset);
@@ -256,7 +255,6 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
         mbReset = false;
     }
     }
-
     cv::Mat Tcw = mpTracker->GrabImageMonocular(im,timestamp);
 
     unique_lock<mutex> lock2(mMutexState);

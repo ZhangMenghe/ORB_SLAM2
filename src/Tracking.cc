@@ -430,9 +430,9 @@ void Tracking::Track()
             }
             else
                 mVelocity = cv::Mat();
-
+#ifdef MAP_DRAWER_ENABLE
             mpMapDrawer->SetCurrentCameraPose(mCurrentFrame.mTcw);
-
+#endif
             // Clean VO matches
             for(int i=0; i<mCurrentFrame.N; i++)
             {
@@ -553,9 +553,9 @@ void Tracking::StereoInitialization()
         mpMap->SetReferenceMapPoints(mvpLocalMapPoints);
 
         mpMap->mvpKeyFrameOrigins.push_back(pKFini);
-
+#ifdef MAP_DRAWER_ENABLE
         mpMapDrawer->SetCurrentCameraPose(mCurrentFrame.mTcw);
-
+#endif
         mState=OK;
     }
 }
@@ -728,9 +728,9 @@ void Tracking::CreateInitialMapMonocular()
     mLastFrame = Frame(mCurrentFrame);
 
     mpMap->SetReferenceMapPoints(mvpLocalMapPoints);
-
+#ifdef MAP_DRAWER_ENABLE
     mpMapDrawer->SetCurrentCameraPose(pKFcur->GetPose());
-
+#endif
     mpMap->mvpKeyFrameOrigins.push_back(pKFini);
 
     mState=OK;
